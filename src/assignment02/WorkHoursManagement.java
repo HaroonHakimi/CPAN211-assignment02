@@ -32,7 +32,7 @@ public class WorkHoursManagement extends Application {
         hoursField.setPromptText("Enter hours");
 
         Button submitButton = new Button("Submit");
-        
+
         // Set the action
         submitButton.setOnAction(new SubmitHandler(nameField, roleField, hoursField));
 
@@ -69,7 +69,7 @@ public class WorkHoursManagement extends Application {
     public boolean isValidHours(String hoursStr) {
         // Try-catch exception
         try {
-            double hours = Double.parseDouble(hoursStr);
+            int hours = Integer.parseInt(hoursStr);
             return hours > 0;
         } catch (NumberFormatException e) {
             return false;
@@ -97,7 +97,7 @@ public class WorkHoursManagement extends Application {
             Alert showAlert = new Alert(Alert.AlertType.ERROR);
 
             if (!isValidName(name)) {
-                showAlert.setContentText("Invalid name! Name must be at least 2 letters and only contain alphabet characters.");
+                showAlert.setContentText("Invalid name! Name must only contain alphabet characters.");
                 showAlert.showAndWait();
                 return;
             }
@@ -107,9 +107,9 @@ public class WorkHoursManagement extends Application {
                 showAlert.showAndWait();
                 return;
             }
-            
+
             if (!isValidHours(hours)) {
-                showAlert.setContentText("Invalid hours! Must be a positive number.");
+                showAlert.setContentText("Invalid hours! Must be a integer number.");
                 showAlert.showAndWait();
                 return;
             }
@@ -119,4 +119,4 @@ public class WorkHoursManagement extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-}
+
