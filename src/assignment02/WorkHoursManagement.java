@@ -1,5 +1,8 @@
 package assignment02;
 
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -35,6 +38,7 @@ public class WorkHoursManagement extends Application {
 
         // Set the action
         submitButton.setOnAction(new SubmitHandler(nameField, roleField, hoursField));
+
 
         outputArea = new TextArea();
         outputArea.setEditable(false);
@@ -113,10 +117,31 @@ public class WorkHoursManagement extends Application {
                 showAlert.showAndWait();
                 return;
             }
+
+            String entry = role + " " + name + " " + hours;
+
+            //Append to text
+            outputArea.appendText(entry + "\n");
+
+            //Save the entry to the file
+            try {
+                FileWriter fileWriter = new FileWriter("work_hours.txt", true);
+                PrintWriter printWriter = new PrintWriter(fileWriter);
+                printWriter.println(entry);
+                printWriter.close();
+            } catch (IOException e) {
+                outputArea.appendText("Saving failed! Here's why: " + e.getMessage() + "\n");
+            }
+
+
+            // clear input fields
+            nameField.clear();
+            roleField.clear();
+            hoursField.clear();
         }
     }
     // Main
     public static void main(String[] args) {
         launch(args);
     }
-
+    }
