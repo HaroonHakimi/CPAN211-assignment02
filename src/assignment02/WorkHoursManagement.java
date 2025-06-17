@@ -61,7 +61,7 @@ public class WorkHoursManagement extends Application {
     // Validation method
     // valid name
     public boolean isValidName(String name) {
-        return name != null && !name.isEmpty() && name.matches("^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)") && name.length() >= 2;
+        return name != null && !name.isEmpty() && name.matches("^([a-zA-Z]{2,}\\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\\s?([a-zA-Z]{1,})?)");
     }
 
     // valid role
